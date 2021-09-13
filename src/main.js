@@ -13,6 +13,9 @@ import 'quill/dist/quill.core.css'              //导入文本编辑器的样式
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
+import NProgress from 'nprogress'               //导入进度条组件
+import 'nprogress/nprogress.css'                //导入进度条组件样式
+
 Vue.use(ElementUI);     //使用ElementUI库
 Vue.use(ZkTable)        //使用ZkTable组件
 Vue.use(VueQuillEditor) //使用文本编辑器组件
@@ -22,12 +25,16 @@ Vue.config.productionTip = false
 axios.defaults.baseURL = 'http://www.ysqorz.top:8888/api/private/v1'
 
 //2.给axios设置拦截器
-//请求拦截器:为请求头对象添加token验证的Authorization字段保证拥有获取数据的权限;
+//请求拦截器
+//为请求头对象添加token验证的Authorization字段保证拥有获取数据的权限;
 axios.interceptors.request.use(config=>{
-  config.headers.Authorization = window.sessionStorage.getItem('token')
+  config.headers.Authorization = window.sessionStorage.getItem('token');
+  NProgress.start();    //显示加载进度条效果
   return config;
 })
+//响应拦截器
 axios.interceptors.response.use(result=>{
+  NProgress.done();     //隐藏加载进度条效果
   return result;
 })
 //3.将axios请求挂载到Vue原型上

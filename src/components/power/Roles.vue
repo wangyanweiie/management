@@ -46,7 +46,7 @@
                     <el-col :span="14">
                       <el-tag type="warning" 
                               closable 
-                              v-for="(item3) in item2.children" 
+                              v-for="item3 in item2.children" 
                               :key="item3.id"
                               @close='deleteRightWarn(scope.row.id,item3.id)'>
                         {{item3.authName}}
