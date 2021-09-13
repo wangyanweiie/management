@@ -277,7 +277,6 @@ export default {
     editBtn(attrId){        
       this.$http.get(`categories/${this.cateId}/attributes/${attrId}`,
       {params:{attr_sel:this.activeName}}).then(res=>{
-        console.log(res.data.data)
         if(res.data.meta.status !== 200){
           return this.$message.error(res.data.meta.msg)
         }
