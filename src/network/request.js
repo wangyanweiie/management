@@ -1,5 +1,6 @@
 import axios from 'axios'           //导入axios框架
 import NProgress from 'nprogress'   //导入加载进度条组件
+import 'nprogress/nprogress.css'    //导入进度条组件样式
 
   //1.创建axios的实例
   const instance = axios.create({

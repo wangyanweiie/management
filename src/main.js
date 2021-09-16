@@ -13,8 +13,6 @@ import 'quill/dist/quill.core.css'              //导入文本编辑器的样式
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
-import 'nprogress/nprogress.css'                //导入进度条组件样式
-
 Vue.use(ElementUI);             //使用ElementUI库
 Vue.use(ZkTable)                //使用ZkTable组件
 Vue.use(VueQuillEditor)         //使用文本编辑器组件
