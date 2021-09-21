@@ -39,7 +39,9 @@ export default {
         },
         xAxis: [{boundaryGap: false}],
         yAxis: [{type: 'value'}]
-      }
+      },
+      //服务器中的图表配置信息
+      webOptions:{}
     }
   },
   //【async与await用来简化Promise对象】
@@ -47,24 +49,25 @@ export default {
     //基于准备好的Dom(页面元素渲染完成)初始化ECharts实例 ③
     var myChart = echarts.init(document.getElementById('main'));
 
-    //向服务器请求图表数据与配置项 ④
-    //*************解构赋值出服务器响应的data*************
+    //向服务器请求图表数据与配置项: 解构赋值出服务器响应的data ④
     const {data} = await this.$http.get(`reports/type/1`);
     if(data.meta.status !== 200){
       return this.$message.error(data.meta.msg);
     }
-    //使用lodash的merge方法合并本地与服务器的配置项
-    const result = _.merge(data.data,this.options)   
-    //*************【此时怎么获取到 res ??】*************
-    /*this.$http.get('/reports/type/1').then(res=>{
+    //通过then获取到的res.data.data不正确 ??
+    /**********************************************
+    this.$http.get('/reports/type/1').then(res=>{
       if(res.data.meta.status !== 200){
         return this.$message.error(res.data.meta.msg)
       }else{
-        console.log(res.data.data)
+        this.webOptions = res.data.data;
+        console.log(this.webOptions)
       }
-    })*/
-
-    //展示数据 ⑤
+    })
+    **********************************************/
+    //使用lodash的merge方法合并本地与服务器的配置项
+    const result = _.merge(data.data,this.options)
+    //展示图表数据 ⑤
     myChart.setOption(result);
   }
 }
