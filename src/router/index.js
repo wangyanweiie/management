@@ -1,18 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-//页面视图
-import Login from 'views/login/Login'
-import Home from 'views/home/Home'
-import Welcome from 'views/home/childComs/Welcome'
+
+//路由懒加载
+const Login = () => import(/* webpackChunkName: "group-views" */ 'views/login/Login')
+const Home = () => import(/* webpackChunkName: "group-views" */ 'views/home/Home')
+const Welcome = () => import(/* webpackChunkName: "group-views" */ 'views/home/childComs/Welcome')
 //Home页面子组件
-import Users from 'components/user/Users'
-import Roles from 'components/power/Roles'
-import Rights from 'components/power/Rights'
-import Goods from 'components/good/goods/Goods'
-import Params from 'components/good/Params'
-import Categories from 'components/good/Categories'
-import Orders from 'components/order/Orders'
-import Reports from 'components/report/Reports'
+const Users = () => import(/* webpackChunkName: "group-home" */ 'components/user/Users')
+const Roles = () => import(/* webpackChunkName: "group-home" */ 'components/power/Roles')
+const Rights = () => import(/* webpackChunkName: "group-home" */ 'components/power/Rights')
+const Goods = () => import(/* webpackChunkName: "group-home" */ 'components/good/goods/Goods')
+const Params = () => import(/* webpackChunkName: "group-home" */ 'components/good/Params')
+const Categories = () => import(/* webpackChunkName: "group-home" */ 'components/good/Categories')
+const Orders = () => import(/* webpackChunkName: "group-home" */ 'components/order/Orders')
+const Reports = () => import(/* webpackChunkName: "group-home" */ 'components/report/Reports')
+
 Vue.use(VueRouter)
 
 //1.声明router实例
